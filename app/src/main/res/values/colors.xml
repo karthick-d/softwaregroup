@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="bottom_textback">#707070</color>
+    <color name="textColor3">#212121</color>
+    <color name="recolor">#FAFBFC</color>
+    <color name="schemelabel">#1C1C1C</color>
+    <color name="schemelabels">#858585</color>
+    <color name="voilet">#967bb6</color>
+    <color name="red">#FF0000</color>
+    <color name="grey">#acadb3</color>
+    <color name="socialmedia">#7B7979</color>
+
+</resources>
