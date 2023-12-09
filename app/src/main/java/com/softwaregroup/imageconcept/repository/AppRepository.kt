@@ -12,5 +12,4 @@ class AppRepository {
 
 
 
-    //suspend fun UserImage(body: RequestBodies.ImageBody) = RetrofitInstance.loginApi.uploadFile(body)
 }

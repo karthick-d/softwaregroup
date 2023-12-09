@@ -89,7 +89,7 @@ class MainViewModel(
      * @param response
      * @return
      */
-    private fun handleUserResponse(response: Response<ImageOutputItem>): Event<Resource<ImageOutputItem>>? {
+    private fun handleImageResponse(response: Response<ImageOutputItem>): Event<Resource<ImageOutputItem>>? {
         if (response.isSuccessful) {
             response.body()?.let { resultResponse ->
                 return Event(Resource.Success(resultResponse))
