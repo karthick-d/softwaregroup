@@ -49,3 +49,35 @@ We have used `Preview` and `Image capture` use cases in `CameraActivity`. They h
 * Preview Use Caes : Preview.Builder provides options to set either the target aspect ratio or resolution to be used. The rotation can also be configured, which should typically match the device’s orientation. 
 The Preview use case needs a Surface to display the incoming preview frames it receives from the camera. You can provide a Surface by calling `Preview.setSurfaceProvider(SurfaceProvider)`, the SurfaceProvider passes the preview Surface to be used by the camera.
 * Image Capture Use Case : ImageCapture.takePicture(executor, OnImageCapturedCallback), if the image is successfully captured, onCaptureSuccess() is called with an ImageProxy that wraps the capture image. If the image capture fails, onError() is invoked with the type of the error. Both callbacks are run in the passed in Executor, if they need to run on the main thread, pass in the main thread Executor. ImageCapture.Builder allows to set the flash mode to be used when taking a photo, it can be one of the following: FLASH_MODE_ON, FLASH_MODE_OFF or FLASH_MODE_AUTO.
+
+##upload Files
+  public void uploadFiles(){
+        File[] filesToUpload = new File[files.size()];
+        for(int i=0; i< files.size(); i++){
+            filesToUpload[i] = new File(files.get(i));
+        }
+        showProgress("Uploading media ...");
+        FileUploader fileUploader = new FileUploader();
+        fileUploader.uploadFiles("/", "file", filesToUpload, new FileUploader.FileUploaderCallback() {
+            @Override
+            public void onError() {
+                hideProgress();
+            }
+
+            @Override
+            public void onFinish(String[] responses) {
+                hideProgress();
+                for(int i=0; i< responses.length; i++){
+                    String str = responses[i];
+                    Log.e("RESPONSE "+i, responses[i]);
+                }
+            }
+
+            @Override
+            public void onProgressUpdate(int currentpercent, int totalpercent, int filenumber) {
+                updateProgress(totalpercent,"Uploading file "+filenumber,"");
+                Log.e("Progress Status", currentpercent+" "+totalpercent+" "+filenumber);
+            }
+        });
+    }
+
