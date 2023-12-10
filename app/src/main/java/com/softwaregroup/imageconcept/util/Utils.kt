@@ -3,26 +3,23 @@ package com.softwaregroup.imageconcept.util
 import android.app.ProgressDialog
 import android.content.ContentResolver
 import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
-
+import android.media.ExifInterface
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.net.Uri
-
 import android.os.Build
 import android.util.Log
 import android.webkit.MimeTypeMap
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.softwaregroup.imageconcept.app.MyApplication
-import com.softwaregroup.imageconcept.ui.CamerasActivity
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
+import java.io.IOException
 import kotlin.math.min
 
 
@@ -57,17 +54,41 @@ object Utils {
         return false
     }
 
+
     /**
      * TODO
      *
-     * @param degrees
+     * @param img
+     * @param selectedImage
      * @return
      */
-    fun Bitmap.rotate(degrees: Float): Bitmap {
-        val matrix = Matrix().apply { postRotate(degrees) }
-        return Bitmap.createBitmap(this, 0, 0, width, height, matrix, true)
+    @Throws(IOException::class)
+    fun rotateImageIfRequired(img: Bitmap, selectedImage: Uri): Bitmap? {
+        val ei = ExifInterface(selectedImage.path!!)
+        val orientation =
+            ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)
+        return when (orientation) {
+            ExifInterface.ORIENTATION_ROTATE_90 -> rotateImage(img, 90)
+            ExifInterface.ORIENTATION_ROTATE_180 -> rotateImage(img, 180)
+            ExifInterface.ORIENTATION_ROTATE_270 -> rotateImage(img, 270)
+            else -> img
+        }
     }
 
+    /**
+     * TODO
+     *
+     * @param img
+     * @param degree
+     * @return
+     */
+     fun rotateImage(img: Bitmap, degree: Int): Bitmap? {
+        val matrix = Matrix()
+        matrix.postRotate(degree.toFloat())
+        val rotatedImg = Bitmap.createBitmap(img, 0, 0, img.width, img.height, matrix, true)
+        img.recycle()
+        return rotatedImg
+    }
     fun getByteArrayImage(bitmap: Bitmap): ByteArray {
         val stream = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)

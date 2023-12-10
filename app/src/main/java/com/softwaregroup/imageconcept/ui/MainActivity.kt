@@ -16,6 +16,7 @@ import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.net.toUri
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.softwaregroup.imageconcept.R
@@ -182,7 +183,9 @@ class MainActivity : AppCompatActivity(), OptionDialogFragment.OnItemSelect {
                 val strFileName: String = imagefile!!.name
                 activityMainBinding.fileName.text = strFileName
                 photo = BitmapFactory.decodeFile(imagefile!!.absolutePath)
-                activityMainBinding.imgProfile.setImageBitmap(photo?.rotate(90F))
+                val photos = Utils.rotateImageIfRequired(photo!!,imagefile!!.toUri())
+
+                activityMainBinding.imgProfile.setImageBitmap(photos)
                 activityMainBinding.imgProfile.scaleType = ImageView.ScaleType.CENTER_CROP
 
                 byteArrayImage = Utils.getByteArrayImage(photo!!)

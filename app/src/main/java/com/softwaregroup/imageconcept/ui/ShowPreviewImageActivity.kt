@@ -4,9 +4,11 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 
 import com.softwaregroup.imageconcept.util.Utils.rotate
 import com.softwaregroup.imageconcept.databinding.ActivityShowImageBinding
+import com.softwaregroup.imageconcept.util.Utils
 import java.io.File
 
 /**
@@ -32,7 +34,8 @@ class ShowPreviewImageActivity : AppCompatActivity() {
         } else {
             val files = intent.getSerializableExtra("bitmap") as File
             val bitmap = BitmapFactory.decodeFile(files!!.absolutePath)
-            bindingView.imgShow.setImageBitmap(bitmap?.rotate(90F))
+            val photos = Utils.rotateImageIfRequired(bitmap!!,files!!.toUri())
+            bindingView.imgShow.setImageBitmap(photos)
         }
 
 

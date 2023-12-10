@@ -5,11 +5,14 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+
+import androidx.core.net.toUri
 
 
-import com.softwaregroup.imageconcept.util.Utils.rotate
+
 import com.softwaregroup.imageconcept.databinding.ActivityImageCaptureBinding
+import com.softwaregroup.imageconcept.util.Utils
+
 import java.io.File
 
 /**
@@ -25,7 +28,9 @@ class ImageCaptureActivity : AppCompatActivity() {
         val files = intent.getSerializableExtra("captureFile") as File
 
         val bitmap = BitmapFactory.decodeFile(files!!.absolutePath)
-        binding.imageViewDisplay.setImageBitmap(bitmap?.rotate(90F))
+        val photo = Utils.rotateImageIfRequired(bitmap,files.toUri())
+
+        binding.imageViewDisplay.setImageBitmap(photo)
 
 
         binding.okButton.setOnClickListener {
