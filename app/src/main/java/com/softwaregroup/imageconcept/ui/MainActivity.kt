@@ -21,12 +21,13 @@ import com.google.android.material.snackbar.Snackbar
 import com.softwaregroup.imageconcept.R
 import com.softwaregroup.imageconcept.app.MyApplication
 import com.softwaregroup.imageconcept.databinding.ActivityMainBinding
-import com.softwaregroup.imageconcept.network.API
 import com.softwaregroup.imageconcept.repository.AppRepository
 import com.softwaregroup.imageconcept.util.Constants
 import com.softwaregroup.imageconcept.util.Constants.REQUEST_CODE_CAMERA
 import com.softwaregroup.imageconcept.util.Constants.REQUEST_CODE_GALLERY
+import com.softwaregroup.imageconcept.util.FileUploader
 import com.softwaregroup.imageconcept.util.FileUploaderCallback
+import com.softwaregroup.imageconcept.util.OptionDialogFragment
 import com.softwaregroup.imageconcept.util.Utils
 import com.softwaregroup.imageconcept.util.Utils.allPermissionsGranted
 import com.softwaregroup.imageconcept.util.Utils.getFileExtension

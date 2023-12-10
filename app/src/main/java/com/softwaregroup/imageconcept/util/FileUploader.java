@@ -1,4 +1,4 @@
-package com.softwaregroup.imageconcept.ui;
+package com.softwaregroup.imageconcept.util;
 
 import android.os.Handler;
 import android.os.Looper;

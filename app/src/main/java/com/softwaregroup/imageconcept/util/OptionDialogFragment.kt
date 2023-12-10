@@ -1,4 +1,4 @@
-package com.softwaregroup.imageconcept.ui
+package com.softwaregroup.imageconcept.util
 
 import android.content.DialogInterface
 import android.os.Bundle
@@ -60,7 +60,6 @@ class OptionDialogFragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //setupView(view)
         setupClickListeners()
     }
 
