@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 
-import com.softwaregroup.imageconcept.util.Utils.rotate
 import com.softwaregroup.imageconcept.databinding.ActivityShowImageBinding
 import com.softwaregroup.imageconcept.util.Utils
 import java.io.File

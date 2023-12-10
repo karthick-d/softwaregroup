@@ -34,7 +34,6 @@ import com.softwaregroup.imageconcept.util.Utils.allPermissionsGranted
 import com.softwaregroup.imageconcept.util.Utils.getFileExtension
 import com.softwaregroup.imageconcept.util.Utils.hideProgress
 import com.softwaregroup.imageconcept.util.Utils.permissionList
-import com.softwaregroup.imageconcept.util.Utils.rotate
 import com.softwaregroup.imageconcept.util.Utils.showProgress
 import com.softwaregroup.imageconcept.util.Utils.updateProgress
 import com.softwaregroup.imageconcept.util.errorSnack

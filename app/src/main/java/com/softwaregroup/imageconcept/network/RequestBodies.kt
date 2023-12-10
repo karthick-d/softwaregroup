@@ -2,18 +2,18 @@ package com.softwaregroup.imageconcept.network
 
 object RequestBodies {
     /**
-     * input for create use post api call
+     * TODO
      *
-     * @property name
-     * @property gender
-     * @property email
-     * @property status
+     * @property filename
+     * @property url
+     * @property path
+     * @property type
      */
     data class ImageBody(
-        val name:String,
-        val gender:String,
-        val email:String,
-        val status:String
+        val filename:String,
+        val url:String,
+        val path:String,
+        val type:String
     )
 
 }
